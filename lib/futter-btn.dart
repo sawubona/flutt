@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 /* import 'dart:async'; */
 
 void main() {
-  runApp(MaterialApp(
-    home: MyApp(),
+  runApp(new MaterialApp(
+    home: new MyApp(),
   ));
 }
 
@@ -14,7 +14,8 @@ class MyApp extends StatefulWidget {
 
 class _State extends State<MyApp> {
   String _value = '';
-  void _onClick() => setState(() => _value = DateTime.now().toString());
+
+  void _onClick(String value) => setState(() => _value = value);
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +23,26 @@ class _State extends State<MyApp> {
       appBar: AppBar(
         title: Text('Name here'),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _onClick,
-        backgroundColor: Colors.red,
-        mini: false,
-        child: Icon(Icons.timer),
-      ),
+      persistentFooterButtons: <Widget>[
+        IconButton(
+          onPressed: () => _onClick('Button 1'),
+          icon: Icon(Icons.timer),
+        ),
+        IconButton(
+          onPressed: () => _onClick('Button 2'),
+          icon: Icon(Icons.toys),
+        ),
+        IconButton(
+          onPressed: () => _onClick('Button 3'),
+          icon: Icon(Icons.tune),
+        ),
+      ],
       body: Container(
         padding: EdgeInsets.all(18.0),
         child: Center(
           child: Column(
             children: <Widget>[
-              Text(_value),
+              new Text(_value),
             ],
           ),
         ),
